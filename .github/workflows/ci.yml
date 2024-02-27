@@ -28,7 +28,9 @@ jobs:
       run: flake8 .
 
     - name: Run tests and generate coverage report
-      run: pytest tests/
+      run: |
+        pip install pytest pytest-cov pytest-html pytest-sugar pytest-json-report
+        py.test -v --cov --html=reports/pytest/report.html
 
     - name: Upload coverage report to Codecov
       uses: codecov/codecov-action@v2

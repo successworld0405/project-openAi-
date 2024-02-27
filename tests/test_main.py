@@ -1,11 +1,13 @@
 from fastapi.testclient import TestClient
 from app.main import app
+import httpretty
 
 client = TestClient(app)
 
 
 def test_update_exchange_rates():
-    response = client.get("http://localhost:8000/update_exchange_rates")
+    # httpretty.register_uri(httpretty.GET, "http://external-api.com/exchange_rates", body='{"message": "Exchange rates updated successfully"}', status=200)
+    response = client.get("/update_exchange_rates")
     assert response.status_code == 200
     assert response.json() == {"message": "Exchange rates updated successfully"}
 

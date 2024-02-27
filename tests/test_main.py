@@ -1,9 +1,10 @@
 from fastapi.testclient import TestClient
 from app.main import app
+import pytest
 
 client = TestClient(app)
 
-
+@pytest.fixture
 def test_update_exchange_rates():
     response = client.get("/update_exchange_rates")
     assert response.status_code == 200

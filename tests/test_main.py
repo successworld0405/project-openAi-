@@ -5,7 +5,7 @@ client = TestClient(app)
 
 
 def test_update_exchange_rates():
-    response = client.get("/update_exchange_rates")
+    response = client.get("http://localhost:8000/update_exchange_rates")
     assert response.status_code == 200
     assert response.json() == {"message": "Exchange rates updated successfully"}
 

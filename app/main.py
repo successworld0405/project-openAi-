@@ -1,6 +1,6 @@
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
-from app import crud, models, database, exchange
+from app import crud, database, exchange
 from pydantic import BaseModel
 
 
@@ -12,6 +12,7 @@ class ConvertRequest(BaseModel):
 
 app = FastAPI()
 
+
 # Dependency to get the database session
 def get_db():
     db = database.SessionLocal()
@@ -19,20 +20,24 @@ def get_db():
         yield db
     finally:
         db.close()
-        
+
+
 @app.get("/")
 def root():
     return {"message": "Hello World"}
+
 
 @app.get("/update_exchange_rates")
 async def update_exchange_rates(db: Session = Depends(get_db)):
     exchange.update_exchange_rates(db)
     return {"message": "Exchange rates updated successfully"}
 
+
 @app.get("/last_update")
 async def last_update(db: Session = Depends(get_db)):
     last_update_time = crud.get_last_update(db)
     return {last_update_time}
+
 
 @app.post("/convert")
 async def convert_currency(

@@ -12,7 +12,6 @@ def test_home():
     assert response.json() == {"message": "Hello World"}
 
 
-@pytest.fixture
 def test_update_exchange_rates():
     response = client.get("/update_exchange_rates")
     assert response.status_code == 200

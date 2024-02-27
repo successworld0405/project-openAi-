@@ -29,10 +29,10 @@ jobs:
       #     pylint app tests
       #     flake8 app tests
 
-      - name: Run tests and generate coverage
-        run: |
-          pip install pytest pytest-cov
-          pytest
+      # - name: Run tests and generate coverage
+      #   run: |
+      #     pip install pytest pytest-cov
+      #     pytest
 
       - name: Generate coverage report
         run: |

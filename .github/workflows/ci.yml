@@ -28,7 +28,7 @@ jobs:
       run: flake8 .
 
     - name: Run tests and generate coverage report
-      run: pytest --cov=app tests/
+      run: pytest tests/
 
     - name: Upload coverage report to Codecov
       uses: codecov/codecov-action@v2

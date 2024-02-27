@@ -1,10 +1,8 @@
-from pydoc import cli
-from urllib import response
 from fastapi.testclient import TestClient
 from app.main import app
-import pytest
 
 client = TestClient(app)
+
 
 def test_home():
     response = client.get("/")
